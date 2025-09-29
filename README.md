@@ -1,6 +1,31 @@
 # 🚀 PROJETO COMPLETO: PERCEPTRON PARA MANDIOCA
 
-## 📁 Arquivos Criados
+## � **RELATÓRIO COMPLETO EM PDF**
+
+> **🎯 [CLIQUE AQUI PARA ACESSAR O RELATÓRIO FINAL EM PDF](./RELATORIO_PERCEPTRON_MANDIOCA_ABNT.pdf)**
+
+### 📊 **Conteúdo do Relatório Técnico (Normas ABNT)**
+- ✅ **Introdução completa** com contextualização do problema
+- ✅ **Metodologia detalhada** (arquitetura, função de ativação, algoritmo)
+- ✅ **Base de dados** com exemplos e estatísticas
+- ✅ **Resultados** com validação cruzada e análise de sensibilidade
+- ✅ **Discussão crítica** (vantagens, limitações, melhorias)
+- ✅ **Conclusões** e aplicações práticas
+- ✅ **Referências bibliográficas**
+- ✅ **Tabelas e gráficos** profissionais
+
+**📋 Desenvolvido por:**
+- João Pedro Dias Barreto
+- Leonardo Wicher Lopes Ferreira
+
+**🔧 Para gerar o PDF novamente:**
+```bash
+python gerar_relatorio_pdf.py
+```
+
+---
+
+## �📁 Arquivos Criados
 
 ### 1. `treinamento.py` (Original)
 Seu código original - excelente implementação base do Perceptron com:
