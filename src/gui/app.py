@@ -4,63 +4,19 @@ import threading
 import sys
 
 # Importa as funções do modelo
+# Importa as funções do modelo
+import os
+import sys
+
+# Adiciona o diretório raiz ao path
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(base_dir)
+
 try:
-    from treinamento_aprimorado import PerceptronAprimorado, pre_processar_dados, carregar_dados_brutos
-except ImportError:
-    try:
-        from treinamento import Perceptron
-        # Função alternativa se não encontrar o aprimorado
-        def carregar_dados_brutos(caminho_arquivo):
-            dataset = []
-            with open(caminho_arquivo, 'r') as file:
-                next(file)  # Pula cabeçalho
-                for linha in file:
-                    dataset.append(linha.strip().split(','))
-            return dataset
-        
-        def pre_processar_dados(dataset):
-            dados_numericos = []
-            for linha in dataset:
-                dados_numericos.append([float(linha[0]), int(linha[1]), int(linha[2]), int(linha[3]), int(linha[4])])
-            
-            X_bruto = [linha[:-1] for linha in dados_numericos]
-            y = [linha[-1] for linha in dados_numericos]
-            
-            # Engenharia de Atributos: pH -> distância do ideal
-            for i in range(len(X_bruto)):
-                ph_valor = X_bruto[i][0]
-                distancia_ph = abs(ph_valor - 6.0)
-                X_bruto[i][0] = distancia_ph
-            
-            # Normalização
-            min_vals = [float('inf')] * 2
-            max_vals = [float('-inf')] * 2
-            
-            for linha in X_bruto:
-                for i in range(2):
-                    if linha[i] < min_vals[i]: min_vals[i] = linha[i]
-                    if linha[i] > max_vals[i]: max_vals[i] = linha[i]
-                    
-            X_normalizado = []
-            for linha in X_bruto:
-                linha_norm = []
-                for i in range(2):
-                    if (max_vals[i] - min_vals[i]) == 0:
-                        norm_val = 0
-                    else:
-                        norm_val = (linha[i] - min_vals[i]) / (max_vals[i] - min_vals[i])
-                    linha_norm.append(norm_val)
-                
-                linha_norm.extend(linha[2:])
-                X_normalizado.append(linha_norm)
-                
-            return X_normalizado, y, min_vals, max_vals
-        
-        PerceptronAprimorado = Perceptron  # Usa o original
-        
-    except ImportError:
-        messagebox.showerror("Erro", "Arquivos do modelo não encontrados!")
-        sys.exit()
+    from src.models.perceptron_cv import PerceptronAprimorado, pre_processar_dados, carregar_dados_brutos
+except ImportError as e:
+    messagebox.showerror("Erro", f"Erro ao importar módulos: {str(e)}")
+    sys.exit()
 
 class SoloMandiocaGUI:
     def __init__(self, root):
@@ -317,7 +273,10 @@ class SoloMandiocaGUI:
                 self.status_label.config(text="🔄 Carregando dados de treinamento...", bg='#fff3cd')
                 self.root.update()
                 
-                dados_brutos = carregar_dados_brutos('entrada_mandioca.csv')
+                import os
+                base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                arquivo_csv = os.path.join(base_dir, 'data', 'entrada_mandioca.csv')
+                dados_brutos = carregar_dados_brutos(arquivo_csv)
                 X_processado, y_processado, min_vals, max_vals = pre_processar_dados(dados_brutos)
                 
                 self.status_label.config(text="🤖 Treinando modelo de IA...")

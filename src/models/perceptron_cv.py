@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from collections import defaultdict
 
-# -----------------------------------------------------------------------------
 # CLASSE PERCEPTRON APRIMORADA
-# -----------------------------------------------------------------------------
+
 class PerceptronAprimorado:
     def __init__(self, num_entradas, taxa_aprendizado=0.1):
         self.taxa_aprendizado = taxa_aprendizado
@@ -56,9 +55,8 @@ class PerceptronAprimorado:
             print("\n--- Treinamento finalizado (limite de épocas atingido). ---")
         return epocas
 
-# -----------------------------------------------------------------------------
-# FUNÇÕES DE PRÉ-PROCESSAMENTO (mantidas do original)
-# -----------------------------------------------------------------------------
+# FUNÇÕES DE PRÉ-PROCESSAMENTO
+
 def carregar_dados_brutos(caminho_arquivo):
     """Lê um arquivo CSV e o converte para o formato bruto (strings)."""
     dataset = []
@@ -112,9 +110,7 @@ def pre_processar_dados(dataset):
         
     return X_normalizado, y, min_vals, max_vals
 
-# -----------------------------------------------------------------------------
 # FUNÇÕES DE ANÁLISE E VISUALIZAÇÃO
-# -----------------------------------------------------------------------------
 def validacao_cruzada_k_fold(X, y, k=5, taxa_aprendizado=0.1, epocas=200):
     """Implementa validação cruzada k-fold."""
     print(f"\n--- Validação Cruzada {k}-Fold ---")
@@ -250,7 +246,10 @@ def criar_visualizacoes(perceptron, X_original, y, dados_brutos, resultados_sens
                 f'{peso:.3f}', ha='center', va='bottom', fontweight='bold')
     
     plt.tight_layout()
-    plt.savefig('analise_perceptron_mandioca.png', dpi=300, bbox_inches='tight')
+    import os
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    caminho_grafico = os.path.join(base_dir, 'docs', 'reports', 'analise_perceptron_mandioca.png')
+    plt.savefig(caminho_grafico, dpi=300, bbox_inches='tight')
     plt.show()
 
 def relatorio_detalhado(perceptron, X, y, dados_brutos, acuracias_cv):
@@ -306,7 +305,10 @@ if __name__ == "__main__":
     print("="*60)
     
     # Carregamento e pré-processamento
-    arquivo_csv = 'entrada_mandioca.csv'
+    import os
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    arquivo_csv = os.path.join(base_dir, 'data', 'entrada_mandioca.csv')
+    
     dados_brutos = carregar_dados_brutos(arquivo_csv)
     X_processado, y_processado, min_vals, max_vals = pre_processar_dados(dados_brutos)
     

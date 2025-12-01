@@ -18,6 +18,14 @@
 
 **Recomendação**: Taxa de 0.5 oferece melhor performance (100% acurácia, convergência rápida)
 
+### Performance do KNN (Novo)
+O algoritmo K-Nearest Neighbors foi testado como comparativo:
+- **K=3**: 100% de acurácia
+- **K=5**: 100% de acurácia
+- **K=7**: 100% de acurácia
+
+**Conclusão**: O KNN demonstrou robustez total neste dataset, confirmando que os dados são bem separáveis e agrupados.
+
 ## 🔍 INTERPRETAÇÃO DO MODELO
 
 ### Importância dos Fatores (por peso absoluto):
@@ -116,4 +124,4 @@ Este é um **exemplo perfeito** de como Machine Learning pode ser aplicado na ag
 
 ---
 *Análise gerada automaticamente pelo sistema de ML desenvolvido*
-*Gráficos detalhados disponíveis em: analise_perceptron_mandioca.png*
+*Gráficos detalhados disponíveis em: docs/reports/analise_perceptron_mandioca.png*

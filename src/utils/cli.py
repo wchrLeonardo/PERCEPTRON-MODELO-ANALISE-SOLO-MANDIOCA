@@ -1,5 +1,12 @@
 import random
-from treinamento_aprimorado import PerceptronAprimorado, pre_processar_dados, carregar_dados_brutos
+import sys
+import os
+
+# Adiciona o diretório raiz ao path
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(base_dir)
+
+from src.models.perceptron_cv import PerceptronAprimorado, pre_processar_dados, carregar_dados_brutos
 
 def predizer_solo_interativo():
     """Permite ao usuário testar o modelo com novos dados de solo."""
@@ -9,7 +16,8 @@ def predizer_solo_interativo():
     print("=" * 60)
     print("Carregando modelo...")
     
-    dados_brutos = carregar_dados_brutos('entrada_mandioca.csv')
+    arquivo_csv = os.path.join(base_dir, 'data', 'entrada_mandioca.csv')
+    dados_brutos = carregar_dados_brutos(arquivo_csv)
     X_processado, y_processado, min_vals, max_vals = pre_processar_dados(dados_brutos)
     
     # Treina o modelo com todos os dados disponíveis

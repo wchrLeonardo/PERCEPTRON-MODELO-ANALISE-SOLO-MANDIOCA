@@ -8,7 +8,9 @@ from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
 from datetime import datetime
 
 def gerar_relatorio_pdf_reportlab():
-    filename = "RELATORIO_PERCEPTRON_MANDIOCA_ABNT.pdf"
+    import os
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    filename = os.path.join(base_dir, 'docs', 'reports', "RELATORIO_PERCEPTRON_MANDIOCA_ABNT.pdf")
     doc = SimpleDocTemplate(filename, pagesize=A4, topMargin=72, bottomMargin=72)
     
     # Estilos

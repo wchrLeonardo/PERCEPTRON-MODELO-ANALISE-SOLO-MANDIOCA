@@ -111,7 +111,10 @@ def pre_processar_dados(dataset):
 # SCRIPT PRINCIPAL
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":
-    arquivo_csv = 'entrada_mandioca.csv'
+    import os
+    # Caminho relativo para o arquivo CSV
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    arquivo_csv = os.path.join(base_dir, 'data', 'entrada_mandioca.csv')
     dados_brutos = carregar_dados_brutos(arquivo_csv)
 
     # Pré-processamento dos dados

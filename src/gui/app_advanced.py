@@ -5,10 +5,18 @@ import os
 import sys
 
 # Importa as funções do modelo
+# Importa as funções do modelo
+import os
+import sys
+
+# Adiciona o diretório raiz ao path
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(base_dir)
+
 try:
-    from treinamento_aprimorado import PerceptronAprimorado, pre_processar_dados, carregar_dados_brutos
-except ImportError:
-    messagebox.showerror("Erro", "Arquivo 'treinamento_aprimorado.py' não encontrado!")
+    from src.models.perceptron_cv import PerceptronAprimorado, pre_processar_dados, carregar_dados_brutos
+except ImportError as e:
+    messagebox.showerror("Erro", f"Erro ao importar módulos: {str(e)}")
     sys.exit()
 
 class SoloMandiocaGUI:
@@ -235,7 +243,11 @@ class SoloMandiocaGUI:
                 self.root.update()
                 
                 # Carrega dados
-                dados_brutos = carregar_dados_brutos('entrada_mandioca.csv')
+                # Carrega dados
+                import os
+                base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                arquivo_csv = os.path.join(base_dir, 'data', 'entrada_mandioca.csv')
+                dados_brutos = carregar_dados_brutos(arquivo_csv)
                 X_processado, y_processado, min_vals, max_vals = pre_processar_dados(dados_brutos)
                 
                 self.status_label.config(text="🤖 Treinando modelo...")

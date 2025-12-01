@@ -30,6 +30,6 @@ if __name__ == "__main__":
     print("🔄 Testando sistema GUI...")
     if test_gui():
         print("✅ Teste concluído com sucesso!")
-        print("🚀 Execute: python gui_mandioca_simples.py")
+        print("🚀 Execute: python src/gui/app.py")
     else:
         print("❌ Problemas detectados na GUI")

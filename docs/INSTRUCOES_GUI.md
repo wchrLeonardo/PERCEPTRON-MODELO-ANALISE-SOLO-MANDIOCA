@@ -4,12 +4,12 @@
 
 ### Opção 1: GUI Principal (Recomendada)
 ```bash
-python gui_mandioca_simples.py
+python src/gui/app.py
 ```
 
 ### Opção 2: GUI Avançada
 ```bash  
-python gui_mandioca.py
+python src/gui/app_advanced.py
 ```
 
 ## 🎯 Funcionalidades da GUI
@@ -61,23 +61,23 @@ python gui_mandioca.py
 
 ### Erro: "Módulo não encontrado"
 ```bash
-pip install tkinter  # Geralmente já vem com Python
+pip install -r requirements.txt
 ```
 
 ### Erro: "Arquivo não encontrado"  
-- ✅ Certifique-se que `entrada_mandioca.csv` está na pasta
-- ✅ Execute dentro da pasta do projeto
+- ✅ Certifique-se que `data/entrada_mandioca.csv` está na pasta
+- ✅ Execute dentro da pasta raiz do projeto
 
 ### Erro: "ImportError"
-- ✅ Execute `python treinamento.py` primeiro para testar
-- ✅ Verifique se todos os arquivos estão presentes
+- ✅ Verifique se a estrutura de pastas está correta (`src/`, `data/`, etc.)
+- ✅ Execute a partir da raiz do projeto
 
 ## 🎓 Exemplo de Uso
 
 ### 1. Executar GUI
 ```bash
-cd "C:\Users\fatec-dsm5\Desktop\APRENDIZADO_MAQUINA"
-python gui_mandioca_simples.py
+# Na raiz do projeto
+python src/gui/app.py
 ```
 
 ### 2. Aguardar Carregamento
@@ -120,4 +120,4 @@ python gui_mandioca_simples.py
 
 A GUI oferece uma experiência profissional e intuitiva para análise de solo, transformando seu excelente modelo de Perceptron em uma ferramenta prática para agricultores e técnicos!
 
-**Execute `python gui_mandioca_simples.py` e teste agora! 🚀**
+**Execute `python src/gui/app.py` e teste agora! 🚀**
